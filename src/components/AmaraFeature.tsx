@@ -55,17 +55,9 @@ export default function AmaraFeature() {
           >
             <div className="aspect-[4/5] rounded-2xl bg-gradient-to-tr from-brand-cyan/5 to-brand-cyan/20 border border-brand-cyan/40 p-2 box-glow relative overflow-hidden group">
               {/* Placeholder for Amara Image/Video */}
-              <div className="w-full h-full rounded-xl bg-black/80 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://res.cloudinary.com/ddn6qh7ve/image/upload/v1774478528/hf_20260313_184816_fc5087de-2ff6-498d-a0a0-3c6f3bcef096_tfwmtg.jpg')] bg-cover bg-center opacity-60 mix-blend-luminosity group-hover:scale-105 transition-transform duration-700"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                
-                {/* Scanning line effect */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-brand-cyan/50 shadow-[0_0_15px_#0CE6F3] animate-[scan_3s_ease-in-out_infinite]"></div>
-                
-                <div className="relative z-10 text-center">
-                  <Cpu size={64} className="text-brand-cyan mx-auto mb-4 opacity-80" />
-                  <p className="font-orbitron tracking-widest text-brand-cyan/80 text-sm">SISTEMA EN LÍNEA</p>
-                </div>
+              <div className="w-full h-full rounded-xl bg-black flex items-center justify-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('https://res.cloudinary.com/ddn6qh7ve/image/upload/v1774478528/hf_20260313_184816_fc5087de-2ff6-498d-a0a0-3c6f3bcef096_tfwmtg.jpg')] bg-cover bg-center opacity-100 group-hover:scale-105 transition-transform duration-700"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
               </div>
             </div>
             
@@ -76,14 +68,6 @@ export default function AmaraFeature() {
 
         </div>
       </div>
-      <style>{`
-        @keyframes scan {
-          0%, 100% { top: 0; opacity: 0; }
-          10% { opacity: 1; }
-          90% { opacity: 1; }
-          50% { top: 100%; }
-        }
-      `}</style>
     </section>
   );
 }
