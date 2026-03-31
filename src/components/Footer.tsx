@@ -17,7 +17,7 @@ export default function Footer() {
           
           <div className="flex space-x-6">
             <a href="https://instagram.com/powerdigital.ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-cyan transition-colors">Instagram</a>
-            <a href="https://tiktok.com/@powerdigital.ai" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-cyan transition-colors">TikTok</a>
+            <a href="https://www.tiktok.com/@powerdigital.ia" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-cyan transition-colors">TikTok</a>
           </div>
         </div>
         
