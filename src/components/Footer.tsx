@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <img 
-              src="https://res.cloudinary.com/ddn6qh7ve/image/upload/v1774478696/Recurso_24_n6hfz5.png" 
+              src="https://res.cloudinary.com/ddn6qh7ve/image/upload/v1774969465/LogoLightHor_twp0u4.png" 
               alt="Power Digital Logo" 
               className="h-10 w-auto object-contain mb-2" 
               referrerPolicy="no-referrer"

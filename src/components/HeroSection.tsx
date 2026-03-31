@@ -12,7 +12,7 @@ export default function HeroSection() {
           playsInline 
           className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen"
         >
-          <source src="https://res.cloudinary.com/ddn6qh7ve/video/upload/v1774480440/2026-03-18-231026258_jpdxhx.mp4" type="video/mp4" />
+          <source src="https://res.cloudinary.com/ddn6qh7ve/video/upload/v1774969443/0318-01_gtjqrf.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#0CE6F311_1px,transparent_1px),linear-gradient(to_bottom,#0CE6F311_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black"></div>
@@ -26,19 +26,19 @@ export default function HeroSection() {
         >
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-orbitron mb-6 leading-tight glitch-hover cursor-default">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-cyan via-white to-brand-cyan bg-[length:200%_auto] animate-[gradient_3s_linear_infinite]">
-              Transformamos tu Marca
+              Potenciamos tu negocio
             </span>
             <br />
-            <span className="text-white">con Inteligencia Artificial</span>
+            <span className="text-white">o marca personal</span>
           </h1>
           
           <p className="mt-6 text-xl md:text-2xl text-gray-400 font-poppins max-w-3xl mx-auto font-light">
-            No vendemos marketing. <span className="text-brand-cyan font-medium">Vendemos resultados medibles.</span>
+            Sin sesiones costosas y en tiempo récord gracias a la IA.
           </p>
 
           <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6">
             <a href="#diagnostico" className="px-8 py-4 rounded-full bg-brand-cyan text-black font-orbitron text-lg font-bold tracking-wider hover:bg-white hover:text-black transition-all duration-300 box-glow hover:scale-105 text-center">
-              Obtén tu Score Gratis
+              Obtén tu Score de visibilidad en redes
             </a>
             <a href="https://res.cloudinary.com/ddn6qh7ve/image/upload/v1774479688/PriceBrochure_Mar25PowerDigital_ojwihn.pdf" target="_blank" rel="noopener noreferrer" className="px-8 py-4 rounded-full bg-transparent border-2 border-brand-cyan text-brand-cyan font-orbitron text-lg font-bold tracking-wider hover:bg-brand-cyan hover:text-black transition-all duration-300 box-glow hover:scale-105 text-center">
               Ver Brochure y Precios

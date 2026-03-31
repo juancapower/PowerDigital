@@ -11,7 +11,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 flex items-center cursor-pointer">
             <img 
-              src="https://res.cloudinary.com/ddn6qh7ve/image/upload/v1774478696/Recurso_24_n6hfz5.png" 
+              src="https://res.cloudinary.com/ddn6qh7ve/image/upload/v1774969465/LogoLightHor_twp0u4.png" 
               alt="Power Digital Logo" 
               className="h-10 w-auto object-contain" 
               referrerPolicy="no-referrer"
@@ -25,7 +25,7 @@ export default function Navbar() {
             <a href="#diagnostico" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium tracking-wide">Diagnóstico</a>
             <a href="https://wa.me/51963335717" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium tracking-wide">Contacto</a>
             <a href="https://wa.me/51963335717" target="_blank" rel="noopener noreferrer" className="px-6 py-2 rounded-full bg-transparent border border-brand-cyan text-brand-cyan font-orbitron text-sm font-bold tracking-wider hover:bg-brand-cyan hover:text-black transition-all duration-300 box-glow">
-              WhatsApp
+              Conversemos
             </a>
           </div>
 
@@ -51,7 +51,7 @@ export default function Navbar() {
             <a href="#diagnostico" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Diagnóstico</a>
             <a href="https://wa.me/51963335717" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Contacto</a>
             <a href="https://wa.me/51963335717" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-2 rounded-full bg-transparent border border-brand-cyan text-brand-cyan font-orbitron text-sm font-bold tracking-wider box-glow w-3/4 text-center">
-              WhatsApp
+              Conversemos
             </a>
           </div>
         </motion.div>
