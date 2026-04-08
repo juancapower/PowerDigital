@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20 pb-24 md:pb-32">
       {/* Background Video and grid effect */}
       <div className="absolute inset-0 z-0 bg-black">
         <video 
@@ -18,7 +18,7 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex-grow flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,21 +36,41 @@ export default function HeroSection() {
             Sin sesiones costosas y en tiempo récord gracias a la IA.
           </p>
 
-          <div className="mt-12 flex flex-col sm:flex-row justify-center items-center gap-6">
-            <a href="#diagnostico" className="px-8 py-4 rounded-full bg-brand-cyan text-black font-orbitron text-lg font-bold tracking-wider hover:bg-white hover:text-black transition-all duration-300 box-glow hover:scale-105 text-center">
+          <div className="mt-12 flex justify-center items-center">
+            <a href="#diagnostico" className="px-8 py-4 rounded-full bg-black border border-brand-cyan/50 text-brand-cyan font-poppins font-semibold tracking-wide hover:bg-brand-cyan/10 hover:border-brand-cyan transition-all duration-300 shadow-[0_0_15px_rgba(12,230,243,0.15)] hover:shadow-[0_0_25px_rgba(12,230,243,0.3),inset_0_0_15px_rgba(12,230,243,0.2)] text-center">
               Obtén tu Score de visibilidad en redes
-            </a>
-            <a href="https://res.cloudinary.com/ddn6qh7ve/image/upload/v1774479688/PriceBrochure_Mar25PowerDigital_ojwihn.pdf" target="_blank" rel="noopener noreferrer" className="px-8 py-4 rounded-full bg-transparent border-2 border-brand-cyan text-brand-cyan font-orbitron text-lg font-bold tracking-wider hover:bg-brand-cyan hover:text-black transition-all duration-300 box-glow hover:scale-105 text-center">
-              Ver Brochure y Precios
             </a>
           </div>
         </motion.div>
       </div>
 
+      {/* Quantitative Social Proof Metrics */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        className="relative z-10 w-full max-w-5xl mx-auto px-4 mt-16 md:mt-0"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 border-t border-white/10 pt-8">
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-orbitron font-bold text-white mb-2">+20</p>
+            <p className="text-sm text-gray-400 font-poppins uppercase tracking-widest">Negocios y marcas escaladas</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-orbitron font-bold text-white mb-2">+3</p>
+            <p className="text-sm text-gray-400 font-poppins uppercase tracking-widest">Ciudades (Trujillo, Lima, Ayacucho)</p>
+          </div>
+          <div className="text-center">
+            <p className="text-3xl md:text-4xl font-orbitron font-bold text-white mb-2">100%</p>
+            <p className="text-sm text-gray-400 font-poppins uppercase tracking-widest">Sistemas automatizados</p>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Decorative elements */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-[30px] h-[50px] rounded-full border-2 border-brand-cyan/50 flex justify-center p-2">
-          <div className="w-1 h-3 bg-brand-cyan rounded-full"></div>
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+        <div className="w-[30px] h-[50px] rounded-full border border-white/20 flex justify-center p-2">
+          <div className="w-1 h-3 bg-white/50 rounded-full"></div>
         </div>
       </div>
     </section>

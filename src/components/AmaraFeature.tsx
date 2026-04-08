@@ -41,7 +41,7 @@ export default function AmaraFeature() {
               ))}
             </ul>
             
-            <a href="https://wa.me/51963335717" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-3 rounded-full bg-transparent border-2 border-brand-cyan text-brand-cyan font-orbitron font-bold tracking-wider hover:bg-brand-cyan hover:text-black transition-all duration-300 box-glow">
+            <a href="https://wa.me/51920690260" target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-3 rounded-full bg-transparent border-2 border-brand-cyan text-brand-cyan font-orbitron font-bold tracking-wider hover:bg-brand-cyan hover:text-black transition-all duration-300 box-glow">
               Cotizar Modelo Digital
             </a>
           </motion.div>

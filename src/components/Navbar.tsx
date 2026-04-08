@@ -19,12 +19,12 @@ export default function Navbar() {
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
-            <a href="https://www.juancapower.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium tracking-wide">Home</a>
+            <a href="https://www.juancapower.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium tracking-wide">Inicio</a>
             <a href="#servicios" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium tracking-wide">Servicios</a>
             <a href="#modelos" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium tracking-wide">Modelos Digitales</a>
             <a href="#diagnostico" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium tracking-wide">Diagnóstico</a>
-            <a href="https://wa.me/51963335717" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium tracking-wide">Contacto</a>
-            <a href="https://wa.me/51963335717" target="_blank" rel="noopener noreferrer" className="px-6 py-2 rounded-full bg-transparent border border-brand-cyan text-brand-cyan font-orbitron text-sm font-bold tracking-wider hover:bg-brand-cyan hover:text-black transition-all duration-300 box-glow">
+            <a href="https://wa.me/51920690260" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-brand-cyan transition-colors text-sm font-medium tracking-wide">Contacto</a>
+            <a href="https://wa.me/51920690260" target="_blank" rel="noopener noreferrer" className="px-6 py-2 rounded-full bg-transparent border border-brand-cyan text-brand-cyan font-orbitron text-sm font-bold tracking-wider hover:bg-brand-cyan hover:text-black transition-all duration-300 box-glow">
               Conversemos
             </a>
           </div>
@@ -45,12 +45,12 @@ export default function Navbar() {
           className="md:hidden bg-black/95 backdrop-blur-xl border-b border-brand-cyan/20"
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col items-center">
-            <a href="https://www.juancapower.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Home</a>
+            <a href="https://www.juancapower.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Inicio</a>
             <a href="#servicios" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Servicios</a>
             <a href="#modelos" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Modelos Digitales</a>
             <a href="#diagnostico" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Diagnóstico</a>
-            <a href="https://wa.me/51963335717" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Contacto</a>
-            <a href="https://wa.me/51963335717" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-2 rounded-full bg-transparent border border-brand-cyan text-brand-cyan font-orbitron text-sm font-bold tracking-wider box-glow w-3/4 text-center">
+            <a href="https://wa.me/51920690260" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} className="block px-3 py-2 text-base font-medium text-gray-300 hover:text-brand-cyan">Contacto</a>
+            <a href="https://wa.me/51920690260" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-2 rounded-full bg-transparent border border-brand-cyan text-brand-cyan font-orbitron text-sm font-bold tracking-wider box-glow w-3/4 text-center">
               Conversemos
             </a>
           </div>

@@ -7,6 +7,7 @@
   
   --font-orbitron: 'Orbitron', sans-serif;
   --font-poppins: 'Poppins', sans-serif;
+  --font-raleway: 'Raleway', sans-serif;
 }
 
 @layer utilities {
@@ -21,6 +22,20 @@
   }
   .glitch-hover:hover {
     animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -40,6 +55,10 @@ body {
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6, .font-orbitron {
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+.font-orbitron {
   font-family: 'Orbitron', sans-serif;
 }
