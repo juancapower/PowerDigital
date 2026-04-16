@@ -15,7 +15,7 @@ export default function BrandsSection() {
   ];
 
   return (
-    <section className="py-16 bg-zinc-900/40 border-y border-white/5 overflow-hidden">
+    <section className="py-16 bg-[var(--pd-surface)] border-y border-[var(--pd-border-n)] overflow-hidden">
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0%); }
@@ -32,15 +32,15 @@ export default function BrandsSection() {
       `}</style>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-        <h2 className="text-center text-gray-400 font-poppins text-sm md:text-base uppercase tracking-widest font-medium">
+        <h2 className="text-center font-mono text-xs text-[var(--pd-text-3)] uppercase tracking-[0.16em]">
           Marcas que confían en nosotros
         </h2>
       </div>
 
       <div className="group relative w-full overflow-hidden flex">
         {/* Gradientes laterales para suavizar la entrada y salida */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[var(--pd-surface)] to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[var(--pd-surface)] to-transparent z-10 pointer-events-none"></div>
 
         <div className="animate-marquee gap-12 md:gap-16 px-6 items-center">
           {/* Duplicamos el array para el efecto infinito */}
@@ -49,7 +49,7 @@ export default function BrandsSection() {
               key={i} 
               src={brand.url} 
               alt={brand.name} 
-              className="h-10 md:h-14 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-pointer" 
+              className="h-10 md:h-14 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-[180ms] cursor-pointer" 
               referrerPolicy="no-referrer"
             />
           ))}

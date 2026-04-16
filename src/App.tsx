@@ -16,7 +16,7 @@ import WhatsAppButton from './components/WhatsAppButton';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-brand-cyan selection:text-black relative">
+    <div className="min-h-screen bg-[var(--pd-bg)] text-[var(--pd-text)] selection:bg-[var(--pd-primary)] selection:text-white relative">
       <NoiseOverlay />
       <Navbar />
       <main>

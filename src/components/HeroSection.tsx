@@ -2,77 +2,70 @@ import { motion } from 'motion/react';
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-20 pb-24 md:pb-32">
-      {/* Background Video and grid effect */}
-      <div className="absolute inset-0 z-0 bg-black">
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline 
-          className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-screen"
-        >
-          <source src="https://res.cloudinary.com/ddn6qh7ve/video/upload/v1774969443/0318-01_gtjqrf.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0CE6F311_1px,transparent_1px),linear-gradient(to_bottom,#0CE6F311_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black"></div>
+    <section className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-[var(--pd-bg)] pt-[100px] pb-24 md:pb-32 z-10 w-full">
+      {/* Background glow pseudo-elements */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-[-20%] left-[-10%] w-[55%] h-[80%] bg-[radial-gradient(ellipse,rgba(67,97,238,0.18)_0%,transparent_65%)]"></div>
+        <div className="absolute bottom-0 right-[-5%] w-[40%] h-[60%] bg-[radial-gradient(ellipse,rgba(123,158,255,0.08)_0%,transparent_65%)]"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex-grow flex flex-col justify-center">
+      <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 text-center flex flex-col justify-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col items-center w-full"
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-orbitron mb-6 leading-tight glitch-hover cursor-default">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-brand-cyan via-white to-brand-cyan bg-[length:200%_auto] animate-[gradient_3s_linear_infinite]">
-              Potenciamos tu negocio
+          {/* Top Badge */}
+          <div className="inline-flex items-center gap-2 bg-[rgba(67,97,238,0.08)] border border-[rgba(67,97,238,0.25)] rounded-full px-4 py-1.5 font-mono text-[10px] text-[var(--pd-primary-light)] tracking-[0.1em] mb-7">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--pd-primary)] shadow-[0_0_8px_rgba(67,97,238,0.8)] animate-pulse"></span>
+            Agencia de Marketing con IA · Perú
+          </div>
+
+          <h1 className="font-display font-bold text-[clamp(2.8rem,6vw,5.5rem)] tracking-[-0.03em] leading-[1.08] text-[var(--pd-text)] text-center mb-6">
+            Transforma tu Negocio<br/>
+            <span className="bg-[linear-gradient(135deg,#4361EE_0%,#7B9EFF_60%,#a5c0ff_100%)] bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
+              con Inteligencia Artificial
             </span>
-            <br />
-            <span className="text-white">o marca personal</span>
           </h1>
           
-          <p className="mt-6 text-xl md:text-2xl text-gray-400 font-poppins max-w-3xl mx-auto font-light">
-            Sin sesiones costosas y en tiempo récord gracias a la IA.
+          <p className="font-body text-[clamp(1rem,2vw,1.2rem)] text-[var(--pd-text-2)] leading-[1.7] text-center max-w-[560px] mx-auto mb-10">
+            Automatiza tu captación, potencia tu marca y escala tus ventas
+            sin sesiones costosas — en tiempo récord.
           </p>
 
-          <div className="mt-12 flex justify-center items-center">
-            <a href="#diagnostico" className="px-8 py-4 rounded-full bg-black border border-brand-cyan/50 text-brand-cyan font-poppins font-semibold tracking-wide hover:bg-brand-cyan/10 hover:border-brand-cyan transition-all duration-300 shadow-[0_0_15px_rgba(12,230,243,0.15)] hover:shadow-[0_0_25px_rgba(12,230,243,0.3),inset_0_0_15px_rgba(12,230,243,0.2)] text-center">
-              Obtén tu Score de visibilidad en redes
-            </a>
-          </div>
+          <a href="#diagnostico" className="relative inline-flex items-center gap-2.5 bg-[var(--pd-primary)] text-white border-none cursor-pointer font-body font-semibold text-base px-8 py-4 rounded-xl shadow-[0_0_0_0_rgba(67,97,238,0.4)] transition-all duration-[220ms] ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden group hover:bg-[var(--pd-primary-hover)] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(67,97,238,0.45)] active:translate-y-0 text-center">
+            <div className="absolute top-0 left-[-100%] w-full h-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent)] transition-all duration-500 ease-out group-hover:left-[100%] z-0"></div>
+            <span className="relative z-10">Obtén tu Score de visibilidad</span>
+            <svg className="relative z-10" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
         </motion.div>
       </div>
 
-      {/* Quantitative Social Proof Metrics */}
+      {/* Stats */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-5xl mx-auto px-4 mt-16 md:mt-0"
+        className="relative z-10 w-full"
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 border-t border-white/10 pt-8">
-          <div className="text-center">
-            <p className="text-3xl md:text-4xl font-orbitron font-bold text-white mb-2">+20</p>
-            <p className="text-sm text-gray-400 font-poppins uppercase tracking-widest">Negocios y marcas escaladas</p>
+        <div className="flex gap-12 justify-center mt-14 pt-10 border-t border-[rgba(255,255,255,0.07)] px-4 mx-auto max-w-5xl flex-wrap">
+          <div className="flex flex-col items-center gap-1 sm:border-r border-[rgba(255,255,255,0.07)] sm:pr-12">
+            <span className="font-display font-bold text-[clamp(2rem,4vw,3rem)] text-[var(--pd-text)] tracking-[-0.03em]">+20</span>
+            <span className="font-mono text-[9px] text-[var(--pd-text-3)] tracking-[0.14em] uppercase text-center">Negocios y marcas escaladas</span>
           </div>
-          <div className="text-center">
-            <p className="text-3xl md:text-4xl font-orbitron font-bold text-white mb-2">+3</p>
-            <p className="text-sm text-gray-400 font-poppins uppercase tracking-widest">Ciudades (Trujillo, Lima, Ayacucho)</p>
+          <div className="flex flex-col items-center gap-1 sm:border-r border-[rgba(255,255,255,0.07)] sm:pr-12">
+            <span className="font-display font-bold text-[clamp(2rem,4vw,3rem)] text-[var(--pd-text)] tracking-[-0.03em]">+3</span>
+            <span className="font-mono text-[9px] text-[var(--pd-text-3)] tracking-[0.14em] uppercase text-center">Ciudades (Trujillo,<br/>Lima, Ayacucho)</span>
           </div>
-          <div className="text-center">
-            <p className="text-3xl md:text-4xl font-orbitron font-bold text-white mb-2">100%</p>
-            <p className="text-sm text-gray-400 font-poppins uppercase tracking-widest">Sistemas automatizados</p>
+          <div className="flex flex-col items-center gap-1">
+            <span className="font-display font-bold text-[clamp(2rem,4vw,3rem)] text-[var(--pd-text)] tracking-[-0.03em]">100%</span>
+            <span className="font-mono text-[9px] text-[var(--pd-text-3)] tracking-[0.14em] uppercase text-center">Sistemas<br/>automatizados</span>
           </div>
         </div>
       </motion.div>
-
-      {/* Decorative elements */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
-        <div className="w-[30px] h-[50px] rounded-full border border-white/20 flex justify-center p-2">
-          <div className="w-1 h-3 bg-white/50 rounded-full"></div>
-        </div>
-      </div>
     </section>
   );
 }

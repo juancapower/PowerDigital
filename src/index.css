@@ -1,28 +1,54 @@
 @import "tailwindcss";
 
+:root {
+  /* PALETA POWER DIGITAL */
+  --pd-bg:              #0C0D11;    /* Obsidiana — fondo principal, NO negro puro */
+  --pd-surface:         #131520;    /* Cards, navbar, contenedores */
+  --pd-surface-2:       #1A1C2B;    /* Hover, paneles secundarios */
+  --pd-surface-3:       #1D2038;    /* Modals, tooltips */
+  --pd-border:          rgba(67,97,238,0.15);   /* Bordes premium */
+  --pd-border-n:        rgba(255,255,255,0.07); /* Bordes neutros */
+  --pd-primary:         #4361EE;    /* Indigo eléctrico — acento principal */
+  --pd-primary-hover:   #5A75F5;    /* Hover de CTAs */
+  --pd-primary-dark:    #2A3EB1;    /* Pressed, versión oscura */
+  --pd-primary-light:   #7B9EFF;    /* Links, badges, detalles */
+  --pd-glow:            rgba(67,97,238,0.28);   /* Box-shadow glow */
+  --pd-text:            #EEF0FF;    /* Blanco diamante — títulos */
+  --pd-text-2:          #8892B0;    /* Párrafos, descripciones */
+  --pd-text-3:          #4A5175;    /* Metadata, labels, hints */
+
+  /* GRADIENTES */
+  --pd-grad-hero: radial-gradient(ellipse at 20% 50%, rgba(67,97,238,0.22) 0%, transparent 65%);
+  --pd-grad-card: linear-gradient(135deg, #131520 0%, #1A1C2B 100%);
+  --pd-grad-pri:  linear-gradient(135deg, #4361EE 0%, #7B9EFF 100%);
+  --pd-grad-deep: linear-gradient(180deg, #0C0D11 0%, #1A1C2B 100%);
+
+  /* SOMBRAS */
+  --pd-shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+  --pd-shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+  --pd-shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+  --pd-shadow-glow: 0 0 24px rgba(67,97,238,0.3), 0 4px 16px rgba(0,0,0,0.4);
+
+  /* TIPOGRAFÍA */
+  --font-display: "Clash Display", "Space Grotesk", sans-serif;
+  --font-body:    "Satoshi", "Plus Jakarta Sans", sans-serif;
+  --font-mono:    "DM Mono", "JetBrains Mono", monospace;
+
+  /* RADIOS */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+}
+
 @theme {
-  --color-brand-cyan: #0CE6F3;
-  --color-brand-black: #000000;
-  --color-brand-glass: rgba(12, 230, 243, 0.05);
-  
-  --font-orbitron: 'Orbitron', sans-serif;
-  --font-poppins: 'Poppins', sans-serif;
-  --font-raleway: 'Raleway', sans-serif;
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 @layer utilities {
-  .text-glow {
-    text-shadow: 0 0 10px rgba(12, 230, 243, 0.7), 0 0 20px rgba(12, 230, 243, 0.5);
-  }
-  .box-glow {
-    box-shadow: 0 0 15px rgba(12, 230, 243, 0.4), inset 0 0 10px rgba(12, 230, 243, 0.1);
-  }
-  .box-glow-hover:hover {
-    box-shadow: 0 0 25px rgba(12, 230, 243, 0.6), inset 0 0 15px rgba(12, 230, 243, 0.2);
-  }
-  .glitch-hover:hover {
-    animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
-  }
   .animate-fade-in-up {
     animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
@@ -39,26 +65,13 @@
   }
 }
 
-@keyframes glitch-skew {
-  0% { transform: skew(0deg); }
-  20% { transform: skew(-10deg); }
-  40% { transform: skew(10deg); }
-  60% { transform: skew(-5deg); }
-  80% { transform: skew(5deg); }
-  100% { transform: skew(0deg); }
-}
-
 body {
-  background-color: #000000;
-  color: #FFFFFF;
-  font-family: 'Poppins', sans-serif;
+  background-color: var(--pd-bg);
+  color: var(--pd-text);
+  font-family: var(--font-body);
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Raleway', sans-serif;
-}
-
-.font-orbitron {
-  font-family: 'Orbitron', sans-serif;
+  font-family: var(--font-display);
 }

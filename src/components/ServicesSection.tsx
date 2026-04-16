@@ -4,79 +4,86 @@ import { motion } from 'motion/react';
 export default function ServicesSection() {
   const services = [
     {
-      icon: <Sparkles className="w-8 h-8" />,
-      title: "Modelos Digitales IA",
+      icon: <Sparkles className="w-[28px] h-[28px]" strokeWidth={1.5} />,
+      title: "Modelos / Avatares Digitales IA Realistas",
       description: "Mascotas y modelos hiperrealistas interactuando con tu producto. Nuestro servicio insignia.",
-      className: "md:col-span-2 md:row-span-2",
-      titleSize: "text-3xl md:text-4xl",
-      image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800&auto=format&fit=crop"
+      className: "md:col-span-2 md:row-span-2 border-[rgba(67,97,238,0.25)] shadow-[0_0_40px_rgba(67,97,238,0.12),0_4px_16px_rgba(0,0,0,0.4)] md:-translate-y-[8px]",
+      titleSize: "text-[clamp(1.6rem,3vw,2.2rem)] text-[#fff]",
+      descriptionStyles: "text-[rgba(238,240,255,0.7)] text-[0.9rem]",
+      image: "https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1776358636/hf_20260416_160626_821b925e-3e3e-4b81-b982-614100c2d1a9_nlsbky.png",
+      isLarge: true
     },
     {
-      icon: <Monitor className="w-6 h-6" />,
-      title: "Embudos & Web",
-      description: "Sistemas de captación y ventas automatizadas de alta conversión.",
-      className: "md:col-span-1",
-      titleSize: "text-xl",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
+      icon: <Monitor className="w-[28px] h-[28px]" strokeWidth={1.5} />,
+      title: "Webs y Landing Pages",
+      description: "Desde la administración del dominio y hosting hasta la publicación de web moderna, premium que tu marca necesita con presencia en internet",
+      className: "md:col-span-1 border-[var(--pd-border-n)] bg-[var(--pd-surface)]",
+      titleSize: "text-[1.1rem] text-[var(--pd-text)]",
+      descriptionStyles: "text-[var(--pd-text-2)] text-[0.85rem] leading-[1.6]",
+      image: "https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1776358636/hf_20260416_160629_bff53f32-44f0-4eec-a977-484087d2dc42_i7pg4v.png"
     },
     {
-      icon: <Target className="w-6 h-6" />,
+      icon: <Target className="w-[28px] h-[28px]" strokeWidth={1.5} />,
       title: "Meta Ads",
       description: "Tráfico calificado y maximización de ROAS con segmentación avanzada.",
-      className: "md:col-span-1",
-      titleSize: "text-xl",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"
+      className: "md:col-span-1 border-[var(--pd-border-n)] bg-[var(--pd-surface)]",
+      titleSize: "text-[1.1rem] text-[var(--pd-text)]",
+      descriptionStyles: "text-[var(--pd-text-2)] text-[0.85rem] leading-[1.6]",
+      image: "https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1776358636/hf_20260416_160634_70670c60-6943-4677-891a-ad8749fa51dd_exfp0y.png"
     },
     {
-      icon: <Video className="w-6 h-6" />,
-      title: "Edición & Flyers",
+      icon: <Video className="w-[28px] h-[28px]" strokeWidth={1.5} />,
+      title: "Flyers, banners y edición de videos",
       description: "Contenido visual dinámico y de alto impacto para capturar atención.",
-      className: "md:col-span-1",
-      titleSize: "text-xl",
-      image: "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=800&auto=format&fit=crop"
+      className: "md:col-span-1 border-[var(--pd-border-n)] bg-[var(--pd-surface)]",
+      titleSize: "text-[1.1rem] text-[var(--pd-text)]",
+      descriptionStyles: "text-[var(--pd-text-2)] text-[0.85rem] leading-[1.6]",
+      image: "https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1776358636/hf_20260416_160640_56b29b85-4a95-4de3-9e0e-b0f72d58cf1c_qmtnry.png"
     },
     {
-      icon: <Palette className="w-6 h-6" />,
-      title: "Identidad Premium",
+      icon: <Palette className="w-[28px] h-[28px]" strokeWidth={1.5} />,
+      title: "Identidad visual Premium",
       description: "Construcción de marca, logotipos y diseño de assets corporativos.",
-      className: "md:col-span-1",
-      titleSize: "text-xl",
-      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop"
+      className: "md:col-span-1 border-[var(--pd-border-n)] bg-[var(--pd-surface)]",
+      titleSize: "text-[1.1rem] text-[var(--pd-text)]",
+      descriptionStyles: "text-[var(--pd-text-2)] text-[0.85rem] leading-[1.6]",
+      image: "https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1776359100/hf_20260416_165639_51312f82-72bc-4d4e-9f41-29610eab0f46_j8pxnq.png"
     },
     {
-      icon: <Smartphone className="w-6 h-6" />,
-      title: "Optimización RRSS",
-      description: "Configuración profesional y diseño de perfil para Instagram y WhatsApp.",
-      className: "md:col-span-1",
-      titleSize: "text-xl",
-      image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?q=80&w=800&auto=format&fit=crop"
+      icon: <Smartphone className="w-[28px] h-[28px]" strokeWidth={1.5} />,
+      title: "Optimización de Redes Sociales",
+      description: "Configuración profesional y diseño de perfil para Instagram, WhatsApp, Facebook, TikTok y YouTube.",
+      className: "md:col-span-1 border-[var(--pd-border-n)] bg-[var(--pd-surface)]",
+      titleSize: "text-[1.1rem] text-[var(--pd-text)]",
+      descriptionStyles: "text-[var(--pd-text-2)] text-[0.85rem] leading-[1.6]",
+      image: "https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1776359100/hf_20260416_165409_08dd62cc-da6d-41c0-83fa-608e75bb1dee_fweyew.png"
     }
   ];
 
   return (
-    <section id="servicios" className="py-24 md:py-32 relative z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="servicios" className="py-24 md:py-32 relative z-10 bg-[var(--pd-bg)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-[clamp(40px,6vw,80px)]">
         <div className="text-center mb-16 md:mb-24">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold font-raleway mb-4"
+            className="text-[clamp(2rem,4vw,3.5rem)] font-display font-bold text-[var(--pd-text)] mb-4 tracking-[-0.025em]"
           >
-            El Ecosistema <span className="text-brand-cyan">Power</span>
+            El Ecosistema <span className="text-[var(--pd-primary-light)]">Power</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-gray-400 font-poppins max-w-2xl mx-auto text-lg"
+            className="text-[var(--pd-text-2)] font-body max-w-[520px] mx-auto text-lg"
           >
             No ofrecemos servicios sueltos. Construimos sistemas integrales para dominar tu mercado.
           </motion.p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[minmax(200px,auto)]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[14px] auto-rows-[minmax(200px,auto)] pt-[clamp(40px,6vw,80px)] pb-[clamp(40px,6vw,80px)]">
           {services.map((service, index) => (
             <motion.div 
               key={index}
@@ -84,28 +91,34 @@ export default function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`group relative overflow-hidden rounded-3xl border border-white/5 bg-black p-8 transition-all hover:border-white/10 ${service.className}`}
+              className={`group relative overflow-hidden rounded-[18px] border p-[28px] transition-all duration-[220ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-[4px] hover:border-[rgba(67,97,238,0.3)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_20px_rgba(67,97,238,0.1)] ${service.className}`}
             >
-              {/* Background Image */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-30 transition-opacity duration-700 mix-blend-luminosity"
-                style={{ backgroundImage: `url(${service.image})` }}
-              ></div>
-              
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
-              <div className="absolute inset-0 bg-gradient-to-b from-brand-cyan/0 to-brand-cyan/0 group-hover:from-brand-cyan/10 transition-all duration-500"></div>
+              {/* Background Image & Gradient Overlay */}
+              {service.image && (
+                <>
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center opacity-40 group-hover:opacity-50 transition-opacity duration-700 mix-blend-luminosity"
+                    style={{ backgroundImage: `url(${service.image})` }}
+                  ></div>
+                  <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(12,13,17,0.96)_0%,rgba(12,13,17,0.55)_55%,rgba(12,13,17,0.15)_100%)]"></div>
+                </>
+              )}
               
               <div className="relative z-10 flex flex-col h-full">
-                <div className="w-12 h-12 rounded-2xl bg-black/50 border border-white/10 flex items-center justify-center text-brand-cyan mb-6 group-hover:scale-110 group-hover:border-brand-cyan/30 transition-all duration-300">
+                <div className="w-[48px] h-[48px] rounded-[10px] bg-[rgba(67,97,238,0.1)] flex items-center justify-center text-[var(--pd-primary-light)] mb-6 group-hover:scale-110 transition-all duration-300 p-[10px]">
                   {service.icon}
                 </div>
                 
                 <div className="mt-auto">
-                  <h3 className={`${service.titleSize} font-raleway font-bold text-white mb-3`}>
+                  {service.isLarge && (
+                    <span className="inline-block bg-[var(--pd-primary)] text-[#fff] rounded-full font-mono text-[9px] tracking-[0.1em] px-[12px] py-[4px] uppercase mb-4">
+                      Servicio Insignia
+                    </span>
+                  )}
+                  <h3 className={`${service.titleSize} font-display font-[${service.isLarge ? '700' : '600'}] tracking-[-0.02em] mb-3`}>
                     {service.title}
                   </h3>
-                  <p className="text-gray-400 font-poppins text-sm leading-relaxed">
+                  <p className={`${service.descriptionStyles} font-body`}>
                     {service.description}
                   </p>
                 </div>
