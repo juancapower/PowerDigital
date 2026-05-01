@@ -39,8 +39,8 @@ export default function Navbar() {
             <a href="#modelos" className="text-[var(--pd-text-2)] hover:text-[var(--pd-text)] transition-colors duration-[180ms] ease-in-out text-[14px] font-medium font-body">Modelos Digitales</a>
             <a href="#diagnostico" className="text-[var(--pd-text-2)] hover:text-[var(--pd-text)] transition-colors duration-[180ms] ease-in-out text-[14px] font-medium font-body">Diagnóstico</a>
             <a href="https://wa.me/51920690260" target="_blank" rel="noopener noreferrer" className="text-[var(--pd-text-2)] hover:text-[var(--pd-text)] transition-colors duration-[180ms] ease-in-out text-[14px] font-medium font-body">Contacto</a>
-            <a href="https://wa.me/51920690260" target="_blank" rel="noopener noreferrer" className="px-[18px] py-[8px] rounded-[var(--radius-md)] bg-[var(--pd-primary)] text-white text-[14px] font-medium font-body hover:bg-[var(--pd-primary-hover)] hover:shadow-[var(--pd-shadow-glow)] transition-all duration-[180ms] ease-in-out">
-              Conversemos
+            <a href="#agenda" className="px-[18px] py-[8px] rounded-[var(--radius-md)] bg-[var(--pd-primary)] text-white text-[14px] font-medium font-body hover:bg-[var(--pd-primary-hover)] hover:shadow-[var(--pd-shadow-glow)] transition-all duration-[180ms] ease-in-out">
+              Agenda una llamada
             </a>
           </div>
 
@@ -65,8 +65,8 @@ export default function Navbar() {
             <a href="#modelos" onClick={() => setIsOpen(false)} className="block text-[16px] font-medium text-[var(--pd-text-2)] hover:text-[var(--pd-text)] font-body">Modelos Digitales</a>
             <a href="#diagnostico" onClick={() => setIsOpen(false)} className="block text-[16px] font-medium text-[var(--pd-text-2)] hover:text-[var(--pd-text)] font-body">Diagnóstico</a>
             <a href="https://wa.me/51920690260" target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)} className="block text-[16px] font-medium text-[var(--pd-text-2)] hover:text-[var(--pd-text)] font-body">Contacto</a>
-            <a href="https://wa.me/51920690260" target="_blank" rel="noopener noreferrer" className="mt-4 px-[18px] py-[8px] rounded-[var(--radius-md)] bg-[var(--pd-primary)] text-white text-[14px] font-medium font-body hover:bg-[var(--pd-primary-hover)] hover:shadow-[var(--pd-shadow-glow)] transition-all duration-[180ms] ease-in-out w-3/4 text-center">
-              Conversemos
+            <a href="#agenda" onClick={() => setIsOpen(false)} className="mt-4 px-[18px] py-[8px] rounded-[var(--radius-md)] bg-[var(--pd-primary)] text-white text-[14px] font-medium font-body hover:bg-[var(--pd-primary-hover)] hover:shadow-[var(--pd-shadow-glow)] transition-all duration-[180ms] ease-in-out w-3/4 text-center">
+              Agenda una llamada
             </a>
           </div>
         </motion.div>
