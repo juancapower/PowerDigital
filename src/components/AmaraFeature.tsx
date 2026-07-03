@@ -1,23 +1,24 @@
 import { motion } from 'motion/react';
-import { Cpu, CheckCircle } from 'lucide-react';
+import { CheckCircle2, UserCheck } from 'lucide-react';
 
 export default function AmaraFeature() {
   const bullets = [
-    "Atención y presentación de marca interactiva.",
-    "Contenido visual consistente y alineado a tu branding.",
-    "Campañas de alto impacto con identidad propia.",
-    "Experiencias interactivas escalables sin límites creativos.",
-    "Escalabilidad sin perder presencia física en ningún canal."
+    "1 rostro personalizado único para tu marca",
+    "5 poses profesionales en alta resolución",
+    "Estilo visual premium totalmente fotorrealista",
+    "Ideal para contenido en redes, campañas y marca digital",
+    "Entrega rápida y lista para usar en tus diseños"
   ];
 
   return (
     <section id="modelos" className="py-24 md:py-32 relative overflow-hidden bg-[var(--pd-bg)]">
       
-      {/* Background lights */}
+      {/* Background radial lights */}
       <div className="absolute top-[20%] right-[-10%] w-[50%] h-[50%] bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.03)_0%,transparent_60%)] pointer-events-none"></div>
+      <div className="absolute bottom-[20%] left-[-10%] w-[50%] h-[50%] bg-[radial-gradient(ellipse_at_center,rgba(67,97,238,0.03)_0%,transparent_60%)] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center bg-[var(--pd-surface)] border border-[var(--pd-border)] rounded-3xl p-8 md:p-16 relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center bg-[var(--pd-surface)] border border-[var(--pd-border)] rounded-3xl p-8 md:p-16 relative overflow-hidden">
           
           {/* Subtle gold brand watermark top right */}
           <div className="absolute top-6 right-8 opacity-[0.02] text-[var(--pd-gold)] hidden md:block select-none pointer-events-none">
@@ -37,31 +38,28 @@ export default function AmaraFeature() {
             <div className="inline-flex items-center space-x-2 bg-[rgba(212,175,55,0.06)] border border-[rgba(212,175,55,0.2)] rounded-full px-4 py-1.5 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--pd-gold)] animate-pulse"></span>
               <span className="text-[var(--pd-gold-light)] font-mono text-[10px] font-bold tracking-widest uppercase">
-                CASO ESTRELLA · MODELOS DIGITALES IA
+                CASO ESTRELLA · AVATAR IA PREMIUM
               </span>
             </div>
             
-            <h2 className="text-3xl md:text-5xl font-display font-bold text-[var(--pd-text)] mb-6 leading-[1.15] tracking-tight">
-              Modelos digitales que trabajan para tu marca <br/>
-              <span className="bg-[linear-gradient(135deg,#e7c97a_0%,#d4af37_60%,#9c6a16_100%)] bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
-                incluso cuando tú no estás conectado.
-              </span>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-[var(--pd-text)] mb-4 leading-[1.15] tracking-tight">
+              Conoce a Amara
             </h2>
 
-            <p className="font-serif italic text-base md:text-lg text-[var(--pd-gray-light)] mb-6 leading-relaxed">
-              Te presentamos a <span className="font-semibold text-white">Amara</span>, nuestra modelo digital exclusiva e insignia del ecosistema.
+            <p className="font-serif italic text-base md:text-lg text-[var(--pd-gold-soft)] mb-6 leading-relaxed">
+              Un ejemplo de Avatar IA Premium creado para mostrar cómo una marca puede tener una presencia visual moderna, consistente y escalable.
             </p>
             
             <p className="text-sm md:text-base text-[var(--pd-text-2)] font-body mb-8 leading-relaxed">
-              Creamos modelos e influyentes digitales hiperrealistas a medida. Logramos que interactúen directamente con tus productos físicos o digitales, eliminando de raíz los elevados costos de agencias de modelaje, producciones tradicionales, alquiler de locaciones y viáticos.
+              Amara representa el potencial de los avatares digitales: rostros personalizados, poses profesionales y contenido visual listo para campañas, redes o presentaciones de marca sin los altos costos de producciones tradicionales.
             </p>
             
             {/* Elegant Bullet List */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-10 border-t border-white/[0.05] pt-6">
               {bullets.map((bullet, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <div className="mt-1 w-4 h-4 rounded-full bg-[rgba(212,175,55,0.1)] flex items-center justify-center text-[var(--pd-gold)] flex-shrink-0">
-                    <CheckCircle size={12} className="text-[var(--pd-gold)]" />
+                    <CheckCircle2 size={12} className="text-[var(--pd-gold)]" />
                   </div>
                   <span className="text-xs md:text-sm text-[var(--pd-text-2)] font-body font-medium">
                     {bullet}
@@ -74,12 +72,12 @@ export default function AmaraFeature() {
               href="#agenda" 
               className="relative inline-flex items-center justify-center gap-2.5 bg-[var(--pd-primary)] text-white border-none cursor-pointer font-body font-semibold text-sm px-8 py-4 rounded-xl shadow-[0_8px_24px_rgba(67,97,238,0.3)] transition-all duration-300 hover:bg-[var(--pd-primary-hover)] hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(67,97,238,0.45)]"
             >
-              <Cpu size={16} />
-              <span>Cotizar modelo digital</span>
+              <UserCheck size={16} />
+              <span>Cotizar Avatar IA Premium</span>
             </a>
           </motion.div>
 
-          {/* Right Block: Showcase Portrait Card */}
+          {/* Right Block: Showcase Portrait Card with protagonist 9:16 image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -87,11 +85,11 @@ export default function AmaraFeature() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="lg:col-span-5 relative w-full flex justify-center"
           >
-            <div className="w-full max-w-[340px] aspect-[3/4] rounded-2xl bg-gradient-to-tr from-[rgba(212,175,55,0.05)] to-[rgba(67,97,238,0.15)] border border-[rgba(212,175,55,0.15)] p-2 shadow-[0_20px_40px_rgba(11,13,23,0.7)] hover:border-[var(--pd-gold)]/40 transition-all duration-500 relative overflow-hidden group">
+            <div className="w-full max-w-[340px] aspect-[9/16] rounded-2xl bg-gradient-to-tr from-[rgba(212,175,55,0.05)] to-[rgba(67,97,238,0.15)] border border-[rgba(212,175,55,0.15)] p-2 shadow-[0_20px_40px_rgba(11,13,23,0.7)] hover:border-[var(--pd-gold)]/40 transition-all duration-500 relative overflow-hidden group">
               
               <div className="w-full h-full rounded-xl bg-[var(--pd-bg)] flex items-center justify-center relative overflow-hidden">
                 <img 
-                  src="https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1776347918/AmaraDigital_PD_ro7gez.png" 
+                  src="https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783046555/Amara_PowerDigital_nhwwah.png" 
                   alt="Amara Modelo Digital" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 mix-blend-normal"
                   referrerPolicy="no-referrer"
@@ -100,13 +98,13 @@ export default function AmaraFeature() {
                 {/* Title badge in corner of image */}
                 <div className="absolute bottom-4 left-4 right-4 bg-[var(--pd-surface)]/80 backdrop-blur-md border border-[rgba(255,255,255,0.06)] rounded-xl p-3 flex justify-between items-center z-20">
                   <div>
-                    <h4 className="font-display font-bold text-xs text-white">Amara V1.2</h4>
-                    <span className="font-mono text-[8px] text-[var(--pd-gold-light)] uppercase tracking-wider">Hiperrealismo Generado por IA</span>
+                    <h4 className="font-display font-bold text-xs text-white">Amara Premium</h4>
+                    <span className="font-mono text-[8px] text-[var(--pd-gold-light)] uppercase tracking-wider">Identidad Visual IA</span>
                   </div>
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 </div>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--pd-bg)]/80 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--pd-bg)]/80 via-transparent to-transparent pointer-events-none"></div>
               </div>
             </div>
             

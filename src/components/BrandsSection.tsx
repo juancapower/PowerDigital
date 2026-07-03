@@ -11,7 +11,19 @@ export default function BrandsSection() {
     { name: 'Masamor', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1775673064/Logo_masamor_pfpqwc.png' },
     { name: 'Fruit Daily', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1775673203/LogoFruitDaily_white_x9zizr.png' },
     { name: 'Trascendiendo el duelo', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1775669958/Recurso_62_wmsbfr.png' },
-    { name: 'JuanCa Power', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1775515143/logoJuanCaPower_z5roiw.png' }
+    { name: 'JuanCa Power', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/q_auto/f_auto/v1775515143/logoJuanCaPower_z5roiw.png' },
+    { name: 'Tunay Wasi', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048452/ClientesPowerDigital_Empresa_TunayWasi_elrm3i.png' },
+    { name: 'Desafío Ecoaventura', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048452/ClientesPowerDigital_Empresa_DesafioEcoaventura_d8re8t.png' },
+    { name: 'SwellPro Perú', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048451/ClientesPowerDigital_Empresa_SwellProPer%C3%BA_yivbes.png' },
+    { name: 'Levitas', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048451/ClientesPowerDigital_Empresa_Levitas_kkhggj.png' },
+    { name: 'Consciente Creativo', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048451/ClientesPowerDigital_Empresa_ConscienteCreativo_mdbgjb.png' },
+    { name: 'Carmen Giraldo', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048450/ClientesPowerDigital_MarcaPersonal_CarmenGiraldo_lmsnky.png' },
+    { name: 'Warmi Kapital', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048450/ClientesPowerDigital_Empresa_WarmiKapital_zkguh6.png' },
+    { name: 'Eversafe Financial', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048450/ClientesPowerDigital_Empresa_EversafeFinancial__d7um7a.png' },
+    { name: 'Grace Ramírez', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048450/ClientesPowerDigital_MarcaPersonal_GraceRamirez_i5fjzi.png' },
+    { name: 'Heydy Coach', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048450/ClientesPowerDigital_MarcaPersonal_HeydyCoach_gtfpqp.png' },
+    { name: 'Hugo Dam', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048450/ClientesPowerDigital_MarcaPersonal_HugoDam_xknkti.png' },
+    { name: 'CRTech', url: 'https://res.cloudinary.com/ddn6qh7ve/image/upload/f_auto,q_auto/v1783048450/ClientesPowerDigital_Empresa_CRTech_tcotdg.png' }
   ];
 
   return (
@@ -22,7 +34,7 @@ export default function BrandsSection() {
           100% { transform: translateX(-50%); }
         }
         .animate-marquee {
-          animation: marquee 35s linear infinite;
+          animation: marquee 75s linear infinite;
           display: flex;
           width: max-content;
         }

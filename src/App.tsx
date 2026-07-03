@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import BrandsSection from './components/BrandsSection';
 import ProblemSection from './components/ProblemSection';
+import SistemasVisualesSection from './components/SistemasVisualesSection';
 import MethodologySection from './components/MethodologySection';
 import ServicesSection from './components/ServicesSection';
 import FounderSection from './components/FounderSection';
@@ -27,6 +28,7 @@ export default function App() {
         <HeroSection />
         <BrandsSection />
         <ProblemSection />
+        <SistemasVisualesSection />
         <MethodologySection />
         <ServicesSection />
         <AmaraFeature />
