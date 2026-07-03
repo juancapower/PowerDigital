@@ -15,14 +15,14 @@ export default function BrandsSection() {
   ];
 
   return (
-    <section className="py-16 bg-[var(--pd-surface)] border-y border-[var(--pd-border-n)] overflow-hidden">
+    <section className="py-20 bg-[var(--pd-surface)] border-y border-[var(--pd-border-n)] overflow-hidden">
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0%); }
           100% { transform: translateX(-50%); }
         }
         .animate-marquee {
-          animation: marquee 40s linear infinite;
+          animation: marquee 35s linear infinite;
           display: flex;
           width: max-content;
         }
@@ -31,25 +31,28 @@ export default function BrandsSection() {
         }
       `}</style>
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-        <h2 className="text-center font-mono text-xs text-[var(--pd-text-3)] uppercase tracking-[0.16em]">
-          Marcas que confían en nosotros
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
+        <h2 className="font-display font-bold text-xl md:text-2xl text-[var(--pd-text)] mb-3 tracking-tight">
+          Negocios y marcas que ya confían en el ecosistema Power
         </h2>
+        <p className="font-serif italic text-sm md:text-base text-[var(--pd-gold-light)] opacity-95">
+          “Estrategia, sistemas e inteligencia artificial aplicada a negocios reales.”
+        </p>
       </div>
 
       <div className="group relative w-full overflow-hidden flex">
-        {/* Gradientes laterales para suavizar la entrada y salida */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-[var(--pd-surface)] to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-[var(--pd-surface)] to-transparent z-10 pointer-events-none"></div>
+        {/* Lateral gradients */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-r from-[var(--pd-surface)] to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-48 bg-gradient-to-l from-[var(--pd-surface)] to-transparent z-10 pointer-events-none"></div>
 
-        <div className="animate-marquee gap-12 md:gap-16 px-6 items-center">
-          {/* Duplicamos el array para el efecto infinito */}
+        <div className="animate-marquee gap-14 md:gap-20 px-6 items-center">
+          {/* Double the array for smooth endless looping */}
           {[...brands, ...brands].map((brand, i) => (
             <img 
               key={i} 
               src={brand.url} 
               alt={brand.name} 
-              className="h-10 md:h-14 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-[180ms] cursor-pointer" 
+              className="h-9 md:h-12 w-auto object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-pointer" 
               referrerPolicy="no-referrer"
             />
           ))}

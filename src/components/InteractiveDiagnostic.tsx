@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronRight, Loader2 } from 'lucide-react';
+import { ChevronRight, Loader2, Play, RefreshCw, CheckCircle, Smartphone, Mail, Sparkles, AlertCircle } from 'lucide-react';
 import { GoogleGenAI, Type } from '@google/genai';
 
 export default function InteractiveDiagnostic() {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(1); // 1: Info, 2: Challenge, 3: Contact, 4: Analysis Animation, 5: Results
+  const [analysisText, setAnalysisText] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<{ score: number; recommendations: string[] } | null>(null);
   
@@ -12,410 +13,458 @@ export default function InteractiveDiagnostic() {
     name: '',
     company: '',
     sector: '',
-    hasWebsite: '',
-    usesSocialMedia: '',
-    budget: '',
-    challenge: [] as string[]
+    challenge: '',
+    contact: ''
   });
 
   const challenges = [
-    "Poco tráfico web",
-    "Baja conversión",
-    "Falta de reconocimiento de marca",
-    "Costo por lead muy alto",
-    "No sé cómo usar IA",
-    "Competencia agresiva"
+    "Leads sin seguimiento constante",
+    "Demasiados procesos manuales y repetitivos",
+    "Contenido para redes muy lento e inconsistente",
+    "Atención desordenada o lenta en WhatsApp",
+    "Datos de ventas y marketing dispersos",
+    "Equipo saturado con tareas administrativas"
   ];
 
-  const handleChallengeToggle = (challenge: string) => {
-    setFormData(prev => {
-      const current = prev.challenge;
-      if (current.includes(challenge)) {
-        return { ...prev, challenge: current.filter(c => c !== challenge) };
-      } else {
-        return { ...prev, challenge: [...current, challenge] };
-      }
-    });
-  };
-
-  const handleSubmit = async () => {
-    setLoading(true);
-    try {
-      // Initialize Gemini API
-      const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
-      // TODO Fix environment variable approach if needed. Using basic process for now assuming setup via vite.
-      // Used `process.env.GEMINI_API_KEY` in previous, maintaining that via custom fix if needed, waiting for instructions.
-      // Oh wait, prior code had process.env.GEMINI_API_KEY so reverting to process.env
+  // Simulated terminal typing for AI analysis steps
+  useEffect(() => {
+    if (step === 4) {
+      const phrases = [
+        "Iniciando diagnóstico estratégico POWER...",
+        "Analizando procesos internos y cuellos de botella...",
+        "Detectando fugas de tiempo y oportunidades comerciales...",
+        "Evaluando integraciones de agentes autónomos de IA...",
+        "Generando ruta POWER personalizada para tu negocio...",
+        "Consolidando reporte de optimización..."
+      ];
       
-      const prompt = `
-        Actúa como un director de arte y experto en branding digital con IA.
-        Analiza los siguientes datos de una empresa y genera un "Score de Visibilidad Digital" del 1 al 100,
-        y provee exactamente 3 recomendaciones personalizadas y accionables sobre diseño visual, creación de contenido, edición de video o uso de modelos digitales.
-        
-        Datos de la empresa:
-        - Nombre: ${formData.name}
-        - Empresa: ${formData.company}
-        - Sector: ${formData.sector}
-        - ¿Tiene web?: ${formData.hasWebsite}
-        - ¿Usa redes sociales?: ${formData.usesSocialMedia}
-        - Presupuesto mensual: ${formData.budget}
-        - Desafíos principales: ${formData.challenge.join(', ')}
-      `;
+      let currentIdx = 0;
+      setAnalysisText(phrases[0]);
 
-      const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-preview",
-        contents: prompt,
-        config: {
-          responseMimeType: "application/json",
-          responseSchema: {
-            type: Type.OBJECT,
-            properties: {
-              score: {
-                type: Type.INTEGER,
-                description: "Score del 1 al 100"
-              },
-              recommendations: {
-                type: Type.ARRAY,
-                items: { type: Type.STRING },
-                description: "Exactamente 3 recomendaciones"
-              }
-            },
-            required: ["score", "recommendations"]
-          }
+      const interval = setInterval(() => {
+        currentIdx++;
+        if (currentIdx < phrases.length) {
+          setAnalysisText(phrases[currentIdx]);
+        } else {
+          clearInterval(interval);
+          setStep(5);
         }
-      });
+      }, 1500);
 
-      if (response.text) {
-        const data = JSON.parse(response.text);
-        setResult(data);
-        setStep(4);
-      }
-    } catch (error) {
-      console.error("Error calling Gemini API:", error);
-      // Fallback in case of error
-      setResult({
-        score: 45,
-        recommendations: [
-          "Integrar modelos digitales generados con IA usando tus productos para destacar en redes sociales.",
-          "Renovar tu identidad visual y brochures para transmitir una imagen más premium y tecnológica.",
-          "Optimizar la edición de tus videos y flyers publicitarios para capturar la atención en los primeros 3 segundos."
-        ]
-      });
-      setStep(4);
-    } finally {
-      setLoading(false);
+      return () => clearInterval(interval);
     }
+  }, [step]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    
+    // Custom tailormade recommendation algorithm based on user selection
+    let score = 35;
+    let recs: string[] = [];
+
+    // Score calculations
+    if (formData.challenge.includes("WhatsApp")) {
+      score += 15;
+      recs.push("Configurar un agente IA conversacional conectado a tu WhatsApp Business para filtrar leads, responder FAQs y agendar citas 24/7 sin fallar.");
+    } else {
+      recs.push("Implementar un flujo de automatización comercial en WhatsApp para responder en menos de 5 minutos a cualquier prospecto interesado.");
+    }
+
+    if (formData.challenge.includes("manuales")) {
+      score += 10;
+      recs.push("Conectar tu CRM, hojas de cálculo y Google Calendar mediante Make o Zapier, automatizando el 90% del traspaso manual de datos de tus vendedores.");
+    } else {
+      recs.push("Realizar una auditoría de workflows internos para detectar tareas que repites semanalmente y sustituirlas por prompts automáticos.");
+    }
+
+    if (formData.challenge.includes("Contenido") || formData.challenge.includes("lento")) {
+      score += 12;
+      recs.push(`Desarrollar un Modelo Digital / Avatar IA personalizado (estilo Amara) para producir videos de marca altamente estables y profesionales para TikTok y Meta Ads sin depender de locaciones.`);
+    } else {
+      recs.push("Consolidar un ecosistema de diseño automatizado para generar copys publicitarios y banners de ofertas con un solo clic con plantillas preaprobadas.");
+    }
+
+    if (formData.challenge.includes("seguimiento") || formData.challenge.includes("Leads")) {
+      score += 18;
+      recs.push("Configurar un pipeline automatizado de e-mail marketing y remarketing telefónico automatizado para reactivar leads fríos e incrementar la conversión.");
+    }
+
+    // Limit to exactly 3 recommendations
+    recs = recs.slice(0, 3);
+    if (score > 90) score = 88; // Always room for improvement
+
+    setResult({
+      score: score,
+      recommendations: recs
+    });
+
+    // Go to step 4 (simulation)
+    setStep(4);
+    setLoading(false);
   };
 
   return (
-    <section id="diagnostico" className="relative z-10 bg-[var(--pd-bg)] px-5 pt-[clamp(60px,8vw,100px)] pb-[clamp(60px,8vw,100px)]">
-      <div className="absolute inset-0 pointer-events-none z-0 before:absolute before:inset-0 before:bg-[radial-gradient(ellipse_at_50%_50%,rgba(67,97,238,0.1)_0%,transparent_60%)]"></div>
+    <section id="diagnostico" className="relative z-10 bg-[var(--pd-bg)] px-5 py-24 md:py-32">
+      {/* Background glowing effects */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-[20%] left-[20%] w-[60%] h-[50%] bg-[radial-gradient(ellipse_at_center,rgba(67,97,238,0.12)_0%,transparent_60%)]"></div>
+        <div className="absolute bottom-[10%] right-[10%] w-[40%] h-[40%] bg-[radial-gradient(ellipse_at_center,rgba(212,175,55,0.06)_0%,transparent_60%)]"></div>
+      </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        
+        {/* Header Section */}
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-[var(--pd-gold)] mb-4 inline-block">Herramienta de Diagnóstico Gratis</span>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[clamp(2rem,4vw,3.2rem)] font-display font-bold text-[var(--pd-text)] mb-4 tracking-[-0.025em] text-center"
+            className="text-[clamp(2.2rem,4.5vw,3.5rem)] font-display font-bold text-[var(--pd-text)] mb-4 tracking-tight"
           >
-            Terminal de <span className="bg-[linear-gradient(135deg,#4361EE,#7B9EFF)] bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">Diagnóstico IA</span>
+            Diagnóstico <span className="bg-[linear-gradient(135deg,#4361ee,#7b9eff,#e7c97a)] bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">Power Digital</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-[var(--pd-text-2)] font-body text-lg"
+            className="text-[var(--pd-text-2)] font-body text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
           >
-            Descubre el potencial oculto de tu marca con nuestro análisis en tiempo real.
+            Descubre en minutos qué procesos de tu negocio pueden automatizarse, optimizarse o escalarse con inteligencia artificial.
           </motion.p>
         </div>
 
-        <div className="bg-[var(--pd-surface)] border border-[rgba(67,97,238,0.2)] rounded-[18px] shadow-[0_0_60px_rgba(67,97,238,0.12),0_20px_60px_rgba(0,0,0,0.5)] relative overflow-hidden max-w-[760px] mx-auto">
+        {/* Terminal Container */}
+        <div className="bg-[var(--pd-surface)] border border-[rgba(67,97,238,0.2)] rounded-3xl shadow-[0_0_60px_rgba(67,97,238,0.12),0_25px_60px_rgba(11,13,23,0.8)] relative overflow-hidden max-w-[780px] mx-auto">
+          
           {/* Terminal Header */}
-          <div className="bg-[var(--pd-surface-2)] border-b border-[rgba(67,97,238,0.15)] py-[14px] px-[22px] flex items-center justify-between relative">
-            <div className="flex items-center justify-center w-5 h-5 overflow-hidden">
-              <svg width="20" height="20" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform scale-75 origin-center">
-                <circle cx="42" cy="52" r="22" stroke="#4361EE" strokeWidth="14" fill="none"/>
-                <line x1="42" y1="30" x2="42" y2="20" stroke="#4361EE" strokeWidth="14" strokeLinecap="round"/>
-                <line x1="42" y1="74" x2="42" y2="95" stroke="#4361EE" strokeWidth="14" strokeLinecap="round"/>
-                <circle cx="82" cy="58" r="22" stroke="#4361EE" strokeWidth="14" fill="none"/>
-                <line x1="82" y1="36" x2="82" y2="20" stroke="#4361EE" strokeWidth="14" strokeLinecap="round"/>
-              </svg>
+          <div className="bg-[#171a2e] border-b border-[rgba(67,97,238,0.15)] py-4 px-6 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-red-500/80"></span>
+              <span className="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+              <span className="w-3 h-3 rounded-full bg-green-500/80"></span>
             </div>
             
-            <span className="font-mono text-[11px] text-[var(--pd-text-3)] tracking-[0.08em] absolute left-1/2 transform -translate-x-1/2">
-              power-digital-ai-core
+            <span className="font-mono text-xs text-[var(--pd-text-3)] tracking-[0.1em]">
+              diagnostico-power-system-v2
             </span>
             
-            <div className="flex items-center gap-[6px] font-mono text-[9px] text-[var(--pd-primary-light)] tracking-[0.12em] uppercase">
-              <span className="w-[6px] h-[6px] rounded-full bg-[var(--pd-primary)] shadow-[0_0_8px_rgba(67,97,238,0.9)] animate-pulse"></span>
-              ACTIVO
+            <div className="flex items-center gap-2 font-mono text-[10px] text-[var(--pd-gold)] tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--pd-gold)] animate-ping"></span>
+              ONLINE
             </div>
           </div>
 
-          <div className="py-[32px] px-[28px] bg-[var(--pd-surface)] min-h-[400px] flex flex-col justify-center relative">
+          {/* Terminal Body */}
+          <div className="py-8 px-6 md:px-10 min-h-[420px] flex flex-col justify-center relative bg-[var(--pd-surface)]">
             
-            {/* Stepper Progress */}
+            {/* Stepper Progress Indicator */}
             {step < 4 && (
-              <div className="flex items-center gap-[14px] mb-[28px]">
-                <span className="font-mono text-[9px] text-[var(--pd-text-3)] tracking-[0.14em] whitespace-nowrap">
-                  PROCESO: {step}/3
+              <div className="flex items-center gap-4 mb-8">
+                <span className="font-mono text-[10px] text-[var(--pd-text-3)] tracking-widest uppercase">
+                  Fase: {step}/3
                 </span>
-                <div className="flex-1 h-[3px] bg-[rgba(255,255,255,0.06)] rounded-full overflow-hidden">
+                <div className="flex-1 h-1 bg-[rgba(255,255,255,0.06)] rounded-full overflow-hidden">
                   <motion.div 
-                    className="h-full bg-[var(--pd-primary)] rounded-full shadow-[0_0_8px_rgba(67,97,238,0.6)]"
+                    className="h-full bg-gradient-to-r from-[var(--pd-primary)] to-[var(--pd-gold)] rounded-full shadow-[0_0_8px_rgba(67,97,238,0.5)]"
                     initial={{ width: 0 }}
                     animate={{ width: `${(step / 3) * 100}%` }}
-                    transition={{ duration: 0.4, ease: [0.16,1,0.3,1] }}
+                    transition={{ duration: 0.4 }}
                   />
                 </div>
               </div>
             )}
 
             <AnimatePresence mode="wait">
+              
+              {/* STEP 1: General Info */}
               {step === 1 && (
-                <motion.div
+                <motion.form
                   key="step1"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className="space-y-8"
+                  onSubmit={(e) => { e.preventDefault(); setStep(2); }}
+                  className="space-y-6"
                 >
-                  <h3 className="font-mono text-[13px] font-bold text-[var(--pd-primary-light)] tracking-[0.05em] mb-[24px] flex items-center">
-                    <span className="text-[var(--pd-primary)] mr-[10px]">&gt;</span> INICIALIZANDO_DATOS
+                  <h3 className="font-mono text-xs font-bold text-[var(--pd-gold)] tracking-wider mb-6 flex items-center">
+                    <span className="text-[var(--pd-primary)] mr-2">&gt;</span> INICIALIZANDO_DATOS_EMPRESA
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-[9px] font-mono text-[var(--pd-primary-light)] tracking-[0.16em] uppercase mb-[8px]">INPUT: Nombre_Usuario</label>
+                      <label className="block text-[10px] font-mono text-[var(--pd-text-3)] tracking-wider uppercase mb-2">Nombre Completo</label>
                       <input 
+                        required
                         type="text" 
-                        className="w-full bg-[var(--pd-surface-2)] border border-[rgba(255,255,255,0.07)] rounded-[8px] px-[16px] py-[12px] text-[var(--pd-text)] focus:outline-none focus:border-[var(--pd-primary)] focus:shadow-[0_0_0_3px_rgba(67,97,238,0.15)] transition-colors duration-180 font-mono text-[13px] placeholder:text-[var(--pd-text-3)] placeholder:not-italic"
+                        className="w-full bg-[var(--pd-surface-2)] border border-[rgba(255,255,255,0.06)] rounded-xl px-4 py-3 text-[var(--pd-text)] focus:outline-none focus:border-[var(--pd-gold)] focus:shadow-[0_0_15px_rgba(212,175,55,0.1)] transition-all font-body text-sm placeholder:text-[var(--pd-text-3)]"
                         value={formData.name}
                         onChange={e => setFormData({...formData, name: e.target.value})}
-                        placeholder="Ej. Juan Pérez"
+                        placeholder="Ej. Juan Cabrera"
                       />
                     </div>
                     <div>
-                      <label className="block text-[9px] font-mono text-[var(--pd-primary-light)] tracking-[0.16em] uppercase mb-[8px]">INPUT: Nombre_Empresa</label>
+                      <label className="block text-[10px] font-mono text-[var(--pd-text-3)] tracking-wider uppercase mb-2">Nombre de Empresa</label>
                       <input 
+                        required
                         type="text" 
-                        className="w-full bg-[var(--pd-surface-2)] border border-[rgba(255,255,255,0.07)] rounded-[8px] px-[16px] py-[12px] text-[var(--pd-text)] focus:outline-none focus:border-[var(--pd-primary)] focus:shadow-[0_0_0_3px_rgba(67,97,238,0.15)] transition-colors duration-180 font-mono text-[13px] placeholder:text-[var(--pd-text-3)] placeholder:not-italic"
+                        className="w-full bg-[var(--pd-surface-2)] border border-[rgba(255,255,255,0.06)] rounded-xl px-4 py-3 text-[var(--pd-text)] focus:outline-none focus:border-[var(--pd-gold)] focus:shadow-[0_0_15px_rgba(212,175,55,0.1)] transition-all font-body text-sm placeholder:text-[var(--pd-text-3)]"
                         value={formData.company}
                         onChange={e => setFormData({...formData, company: e.target.value})}
                         placeholder="Ej. Power Corp"
                       />
                     </div>
                     <div className="md:col-span-2">
-                       <label className="block text-[9px] font-mono text-[var(--pd-primary-light)] tracking-[0.16em] uppercase mb-[8px]">INPUT: Sector_Industria</label>
+                      <label className="block text-[10px] font-mono text-[var(--pd-text-3)] tracking-wider uppercase mb-2">Rubro / Sector del Negocio</label>
                       <input 
+                        required
                         type="text" 
-                        className="w-full bg-[var(--pd-surface-2)] border border-[rgba(255,255,255,0.07)] rounded-[8px] px-[16px] py-[12px] text-[var(--pd-text)] focus:outline-none focus:border-[var(--pd-primary)] focus:shadow-[0_0_0_3px_rgba(67,97,238,0.15)] transition-colors duration-180 font-mono text-[13px] placeholder:text-[var(--pd-text-3)] placeholder:not-italic"
+                        className="w-full bg-[var(--pd-surface-2)] border border-[rgba(255,255,255,0.06)] rounded-xl px-4 py-3 text-[var(--pd-text)] focus:outline-none focus:border-[var(--pd-gold)] focus:shadow-[0_0_15px_rgba(212,175,55,0.1)] transition-all font-body text-sm placeholder:text-[var(--pd-text-3)]"
                         value={formData.sector}
                         onChange={e => setFormData({...formData, sector: e.target.value})}
-                        placeholder="Ej. E-commerce, Salud, Tecnología..."
+                        placeholder="Ej. Consultoría, Retail, Clínicas, Educación, E-commerce..."
                       />
                     </div>
                   </div>
-                  <div className="flex justify-end mt-[48px]">
+
+                  <div className="flex justify-end pt-4">
                     <button 
-                      onClick={() => setStep(2)}
+                      type="submit"
                       disabled={!formData.name || !formData.company || !formData.sector}
-                      className="inline-flex items-center gap-[10px] bg-[var(--pd-primary)] text-white border-none cursor-pointer font-mono font-medium text-[12px] tracking-[0.08em] uppercase px-[24px] py-[14px] rounded-[10px] transition-all duration-[220ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[var(--pd-primary-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(67,97,238,0.4)] disabled:opacity-30 disabled:cursor-not-allowed"
+                      className="inline-flex items-center gap-2 bg-[var(--pd-primary)] text-white border-none cursor-pointer font-body font-semibold text-sm px-6 py-3.5 rounded-xl transition-all duration-300 hover:bg-[var(--pd-primary-hover)] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(67,97,238,0.4)] disabled:opacity-30 disabled:cursor-not-allowed"
                     >
-                      EJECUTAR_SIGUIENTE 
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                      <span>Siguiente paso</span>
+                      <ChevronRight size={16} />
                     </button>
                   </div>
-                </motion.div>
+                </motion.form>
               )}
 
+              {/* STEP 2: Main Challenge */}
               {step === 2 && (
                 <motion.div
                   key="step2"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className="space-y-8"
+                  className="space-y-6"
                 >
-                  <h3 className="font-mono text-[13px] font-bold text-[var(--pd-primary-light)] tracking-[0.05em] mb-[24px] flex items-center">
-                    <span className="text-[var(--pd-primary)] mr-[10px]">&gt;</span> ANALISIS_PRESENCIA_DIGITAL
+                  <h3 className="font-mono text-xs font-bold text-[var(--pd-gold)] tracking-wider mb-6 flex items-center">
+                    <span className="text-[var(--pd-primary)] mr-2">&gt;</span> SELECCIONAR_RETO_PRINCIPAL
                   </h3>
-                  <div className="space-y-8">
-                    <div>
-                      <label className="block text-[9px] font-mono text-[var(--pd-primary-light)] tracking-[0.16em] uppercase mb-[8px]">QUERY: ¿Tiene_Sitio_Web?</label>
-                      <div className="flex flex-wrap gap-4">
-                        {['Sí', 'No', 'En construcción'].map(opt => (
-                          <button
-                            key={opt}
-                            onClick={() => setFormData({...formData, hasWebsite: opt})}
-                            className={`px-4 py-2 text-sm font-mono transition-all border rounded-[8px] ${formData.hasWebsite === opt ? 'bg-[rgba(67,97,238,0.1)] border-[var(--pd-primary)] text-[var(--pd-text)]' : 'bg-[var(--pd-surface-2)] border-[rgba(255,255,255,0.07)] text-[var(--pd-text-2)] hover:border-[var(--pd-primary)] hover:text-[var(--pd-text)] hover:bg-[rgba(67,97,238,0.06)]'}`}
-                          >
-                            [{opt}]
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-[9px] font-mono text-[var(--pd-primary-light)] tracking-[0.16em] uppercase mb-[8px]">QUERY: ¿Uso_Activo_RRSS?</label>
-                      <div className="flex flex-wrap gap-4">
-                        {['Sí', 'No', 'A veces'].map(opt => (
-                          <button
-                            key={opt}
-                            onClick={() => setFormData({...formData, usesSocialMedia: opt})}
-                            className={`px-4 py-2 text-sm font-mono transition-all border rounded-[8px] ${formData.usesSocialMedia === opt ? 'bg-[rgba(67,97,238,0.1)] border-[var(--pd-primary)] text-[var(--pd-text)]' : 'bg-[var(--pd-surface-2)] border-[rgba(255,255,255,0.07)] text-[var(--pd-text-2)] hover:border-[var(--pd-primary)] hover:text-[var(--pd-text)] hover:bg-[rgba(67,97,238,0.06)]'}`}
-                          >
-                            [{opt}]
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-[9px] font-mono text-[var(--pd-primary-light)] tracking-[0.16em] uppercase mb-[8px]">PARAM: Presupuesto_Mensual_USD</label>
-                      <select 
-                        className="w-full md:w-1/2 bg-[var(--pd-surface-2)] border border-[rgba(255,255,255,0.07)] rounded-[8px] px-[16px] py-[12px] text-[var(--pd-text)] focus:outline-none focus:border-[var(--pd-primary)] focus:shadow-[0_0_0_3px_rgba(67,97,238,0.15)] transition-colors duration-180 font-mono text-[13px] appearance-none"
-                        value={formData.budget}
-                        onChange={e => setFormData({...formData, budget: e.target.value})}
-                      >
-                        <option value="" disabled className="bg-[var(--pd-surface)] text-[var(--pd-text-3)]">Selecciona un rango...</option>
-                        <option value="< $500" className="bg-[var(--pd-surface)] text-[var(--pd-text)]">Menos de $500</option>
-                        <option value="$500 - $2,000" className="bg-[var(--pd-surface)] text-[var(--pd-text)]">$500 - $2,000</option>
-                        <option value="$2,000 - $5,000" className="bg-[var(--pd-surface)] text-[var(--pd-text)]">$2,000 - $5,000</option>
-                        <option value="$5,000+" className="bg-[var(--pd-surface)] text-[var(--pd-text)]">Más de $5,000</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="flex justify-between items-center mt-[48px]">
-                    <button 
-                      onClick={() => setStep(1)}
-                      className="px-4 py-2 text-[var(--pd-text-3)] hover:text-[var(--pd-text)] font-mono text-sm transition-colors"
-                    >
-                      &lt; VOLVER
-                    </button>
-                    <button 
-                      onClick={() => setStep(3)}
-                      disabled={!formData.hasWebsite || !formData.usesSocialMedia || !formData.budget}
-                      className="inline-flex items-center gap-[10px] bg-[var(--pd-primary)] text-white border-none cursor-pointer font-mono font-medium text-[12px] tracking-[0.08em] uppercase px-[24px] py-[14px] rounded-[10px] transition-all duration-[220ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[var(--pd-primary-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(67,97,238,0.4)] disabled:opacity-30 disabled:cursor-not-allowed"
-                    >
-                      EJECUTAR_SIGUIENTE 
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-
-              {step === 3 && (
-                <motion.div
-                  key="step3"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  className="space-y-8"
-                >
-                  <h3 className="font-mono text-[13px] font-bold text-[var(--pd-primary-light)] tracking-[0.05em] mb-[24px] flex items-center">
-                    <span className="text-[var(--pd-primary)] mr-[10px]">&gt;</span> IDENTIFICACION_DE_FALLOS
-                  </h3>
-                  <label className="block text-[9px] font-mono text-[var(--pd-primary-light)] tracking-[0.16em] uppercase mb-[8px]">SELECCIONAR_VECTORES_DE_FRICCION:</label>
                   
-                  <div className="flex flex-wrap gap-3 mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {challenges.map(challenge => (
                       <button
                         key={challenge}
-                        onClick={() => handleChallengeToggle(challenge)}
-                        className={`px-4 py-2 text-sm font-mono transition-all border rounded-[8px] ${formData.challenge.includes(challenge) ? 'bg-[rgba(67,97,238,0.1)] border-[var(--pd-primary)] text-[var(--pd-text)]' : 'bg-[var(--pd-surface-2)] border-[rgba(255,255,255,0.07)] text-[var(--pd-text-2)] hover:border-[var(--pd-primary)] hover:text-[var(--pd-text)] hover:bg-[rgba(67,97,238,0.06)]'}`}
+                        type="button"
+                        onClick={() => setFormData({...formData, challenge: challenge})}
+                        className={`text-left px-4 py-3.5 rounded-xl border font-body text-xs md:text-sm transition-all duration-200 flex items-start gap-3 ${
+                          formData.challenge === challenge 
+                            ? 'bg-[rgba(212,175,55,0.06)] border-[var(--pd-gold)] text-white font-medium shadow-[0_0_15px_rgba(212,175,55,0.1)]' 
+                            : 'bg-[var(--pd-surface-2)] border-[rgba(255,255,255,0.05)] text-[var(--pd-text-2)] hover:border-[var(--pd-primary-light)] hover:text-white'
+                        }`}
                       >
-                        {formData.challenge.includes(challenge) ? '[x]' : '[ ]'} {challenge}
+                        <span className={`w-4 h-4 rounded-full border flex-shrink-0 flex items-center justify-center mt-0.5 ${formData.challenge === challenge ? 'border-[var(--pd-gold)] bg-[var(--pd-gold)] text-[var(--pd-bg)]' : 'border-[rgba(255,255,255,0.2)]'}`}>
+                          {formData.challenge === challenge && <span className="w-1.5 h-1.5 rounded-full bg-white"></span>}
+                        </span>
+                        <span>{challenge}</span>
                       </button>
                     ))}
                   </div>
 
-                  <div className="flex justify-between items-center mt-[48px]">
+                  <div className="flex justify-between items-center pt-6">
                     <button 
-                      onClick={() => setStep(2)}
-                      className="px-4 py-2 text-[var(--pd-text-3)] hover:text-[var(--pd-text)] font-mono text-sm transition-colors"
+                      type="button"
+                      onClick={() => setStep(1)}
+                      className="px-4 py-2 text-[var(--pd-text-3)] hover:text-white font-mono text-xs transition-colors"
                     >
                       &lt; VOLVER
                     </button>
                     <button 
-                      onClick={handleSubmit}
-                      disabled={formData.challenge.length === 0 || loading}
-                      className="inline-flex items-center gap-[10px] bg-[var(--pd-primary)] text-white border-none cursor-pointer font-mono font-medium text-[12px] tracking-[0.08em] uppercase px-[24px] py-[14px] rounded-[10px] transition-all duration-[220ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[var(--pd-primary-hover)] hover:-translate-y-[2px] hover:shadow-[0_8px_24px_rgba(67,97,238,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
+                      type="button"
+                      onClick={() => setStep(3)}
+                      disabled={!formData.challenge}
+                      className="inline-flex items-center gap-2 bg-[var(--pd-primary)] text-white border-none cursor-pointer font-body font-semibold text-sm px-6 py-3.5 rounded-xl transition-all duration-300 hover:bg-[var(--pd-primary-hover)] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(67,97,238,0.4)] disabled:opacity-30 disabled:cursor-not-allowed"
+                    >
+                      <span>Siguiente paso</span>
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* STEP 3: Contact details */}
+              {step === 3 && (
+                <motion.form
+                  key="step3"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  onSubmit={handleSubmit}
+                  className="space-y-6"
+                >
+                  <h3 className="font-mono text-xs font-bold text-[var(--pd-gold)] tracking-wider mb-6 flex items-center">
+                    <span className="text-[var(--pd-primary)] mr-2">&gt;</span> REGISTRO_CANAL_CONTACTO
+                  </h3>
+
+                  <div className="max-w-md mx-auto space-y-4">
+                    <p className="text-xs text-[var(--pd-text-2)] font-body leading-relaxed mb-4 text-center">
+                      Ingresa tu canal de comunicación preferido para recibir tu reporte detallado de automatización y Score de madurez.
+                    </p>
+
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[var(--pd-text-3)]">
+                        <Smartphone size={16} className="text-[var(--pd-gold)]" />
+                      </div>
+                      <input 
+                        required
+                        type="text" 
+                        className="w-full bg-[var(--pd-surface-2)] border border-[rgba(255,255,255,0.06)] rounded-xl pl-11 pr-4 py-4 text-[var(--pd-text)] focus:outline-none focus:border-[var(--pd-gold)] focus:shadow-[0_0_15px_rgba(212,175,55,0.1)] transition-all font-body text-sm placeholder:text-[var(--pd-text-3)]"
+                        value={formData.contact}
+                        onChange={e => setFormData({...formData, contact: e.target.value})}
+                        placeholder="WhatsApp (ej: +51 920690260) o Email"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between items-center pt-6">
+                    <button 
+                      type="button"
+                      onClick={() => setStep(2)}
+                      className="px-4 py-2 text-[var(--pd-text-3)] hover:text-white font-mono text-xs transition-colors"
+                    >
+                      &lt; VOLVER
+                    </button>
+                    <button 
+                      type="submit"
+                      disabled={!formData.contact || loading}
+                      className="inline-flex items-center gap-2 bg-[var(--pd-primary)] text-white border-none cursor-pointer font-body font-semibold text-sm px-8 py-3.5 rounded-xl transition-all duration-300 hover:bg-[var(--pd-primary-hover)] hover:-translate-y-0.5 hover:shadow-[0_8px_20px_rgba(67,97,238,0.4)] disabled:opacity-30 disabled:cursor-not-allowed"
                     >
                       {loading ? (
-                        <><Loader2 className="animate-spin" size={16} /> PROCESANDO_IA...</>
+                        <Loader2 className="animate-spin" size={16} />
                       ) : (
-                        <>INICIAR_ANALISIS <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></>
+                        <>Iniciar diagnóstico</>
                       )}
                     </button>
                   </div>
+                </motion.form>
+              )}
+
+              {/* STEP 4: Beautiful Immersive AI Simulation */}
+              {step === 4 && (
+                <motion.div
+                  key="step4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="text-center py-12 flex flex-col items-center justify-center"
+                >
+                  <div className="w-16 h-16 rounded-full bg-[rgba(212,175,55,0.06)] border border-[rgba(212,175,55,0.2)] flex items-center justify-center mb-6 text-[var(--pd-gold)] relative">
+                    <RefreshCw className="animate-spin text-[var(--pd-gold)]" size={24} />
+                    <span className="absolute inset-0 rounded-full border border-dashed border-[var(--pd-primary)] animate-spin-slow"></span>
+                  </div>
+
+                  <div className="font-mono text-xs md:text-sm text-[var(--pd-gold)] uppercase tracking-widest animate-pulse max-w-md mx-auto mb-3">
+                    {analysisText}
+                  </div>
+
+                  <div className="w-48 h-1 bg-[rgba(255,255,255,0.06)] rounded-full overflow-hidden mt-4 mx-auto">
+                    <div className="h-full bg-gradient-to-r from-[var(--pd-primary)] to-[var(--pd-gold)] animate-pulse w-full"></div>
+                  </div>
                 </motion.div>
               )}
 
-              {step === 4 && result && (
+              {/* STEP 5: Results panel */}
+              {step === 5 && result && (
                 <motion.div
-                  key="step4"
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  key="step5"
+                  initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="text-left"
+                  className="space-y-6 text-left"
                 >
-                  <h3 className="font-mono text-[13px] font-bold text-[var(--pd-primary-light)] tracking-[0.05em] mb-[24px] flex items-center">
-                    <span className="text-[var(--pd-primary)] mr-[10px]">&gt;</span> RESULTADOS_DEL_ANALISIS
-                  </h3>
-                  
-                  <div className="flex flex-col md:flex-row items-center md:items-start gap-10 mb-10 mt-8">
-                    {/* Circular Progress */}
-                    <div className="relative w-40 h-40 flex-shrink-0">
-                      <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                        <circle cx="50" cy="50" r="45" fill="none" stroke="var(--pd-surface-3)" strokeWidth="4" />
+                  <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-8">
+                    
+                    {/* Circle Score visualization */}
+                    <div className="relative w-36 h-36 flex-shrink-0 bg-[rgba(11,13,23,0.5)] rounded-full border border-[rgba(255,255,255,0.05)] flex items-center justify-center">
+                      <svg className="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="4" />
                         <motion.circle 
-                          cx="50" cy="50" r="45" fill="none" stroke="var(--pd-primary)" strokeWidth="4"
+                          cx="50" cy="50" r="45" fill="none" stroke="var(--pd-gold)" strokeWidth="4"
                           strokeDasharray="283"
                           initial={{ strokeDashoffset: 283 }}
                           animate={{ strokeDashoffset: 283 - (283 * result.score) / 100 }}
-                          transition={{ duration: 2, ease: "easeOut" }}
+                          transition={{ duration: 1.5, ease: "easeOut" }}
                         />
                       </svg>
-                      <div className="absolute inset-0 flex items-center justify-center flex-col">
-                        <span className="text-4xl font-mono text-[var(--pd-text)]">{result.score}</span>
-                        <span className="text-xs text-[var(--pd-primary-light)] font-mono tracking-widest mt-1">SCORE</span>
+                      <div className="text-center">
+                        <span className="font-display font-bold text-4xl text-white block">{result.score}%</span>
+                        <span className="font-mono text-[8px] text-[var(--pd-text-3)] uppercase tracking-widest">Score de Madurez</span>
                       </div>
                     </div>
 
-                    <div className="flex-grow w-full">
-                      <h4 className="text-[9px] font-mono text-[var(--pd-primary-light)] tracking-[0.16em] uppercase mb-[16px] border-b border-[rgba(255,255,255,0.07)] pb-2 flex items-center gap-2">
-                        OUTPUT: RECOMENDACIONES_SISTEMA
-                      </h4>
-                      <ul className="space-y-4">
-                        {result.recommendations.map((rec, idx) => (
-                          <motion.li 
-                            key={idx}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 1 + (idx * 0.2) }}
-                            className="flex items-start text-[var(--pd-text)] font-mono text-[13px] leading-relaxed bg-[var(--pd-surface-2)] p-4 rounded-[8px] border border-[rgba(255,255,255,0.04)]"
-                          >
-                            <span className="text-[var(--pd-primary)] mr-3 mt-0.5 font-bold">&gt;</span>
-                            <p>{rec}</p>
-                          </motion.li>
-                        ))}
-                      </ul>
+                    {/* Quick description */}
+                    <div className="flex-1">
+                      <div className="inline-flex items-center gap-1.5 bg-[rgba(212,175,55,0.06)] border border-[rgba(212,175,55,0.25)] rounded-full px-3 py-1 font-mono text-[9px] text-[var(--pd-gold)] uppercase tracking-wider mb-3">
+                        <Sparkles size={10} /> Reporte POWER Generado
+                      </div>
+                      <h4 className="font-display font-bold text-lg text-white mb-2">Análisis de {formData.company}</h4>
+                      <p className="text-xs md:text-sm text-[var(--pd-text-2)] font-body leading-relaxed">
+                        Tu nivel de madurez e infraestructura digital actual tiene amplio margen de optimización. Al implementar procesos lógicos automatizados podrías recuperar hasta un <span className="text-[var(--pd-gold-light)] font-bold">40% del tiempo operativo semanal</span> de tu equipo.
+                      </p>
+                    </div>
+
+                  </div>
+
+                  {/* Recommendations */}
+                  <div className="space-y-4">
+                    <span className="font-mono text-[9px] uppercase tracking-wider text-[var(--pd-text-3)] block border-b border-[rgba(255,255,255,0.05)] pb-1.5">Recomendaciones prioritarias del sistema:</span>
+                    
+                    <div className="grid grid-cols-1 gap-3">
+                      {result.recommendations.map((rec, i) => (
+                        <div key={i} className="bg-[rgba(16,18,31,0.6)] border border-[rgba(255,255,255,0.04)] rounded-xl p-4 flex gap-3 hover:border-[var(--pd-gold)]/20 transition-all duration-300">
+                          <span className="font-mono text-sm text-[var(--pd-gold)] font-bold">0{i+1}.</span>
+                          <p className="text-xs md:text-sm text-[var(--pd-text-2)] font-body leading-relaxed">{rec}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="flex justify-center border-t border-[rgba(255,255,255,0.07)] pt-8 mt-12">
-                    <button 
-                      onClick={() => { setStep(1); setFormData({...formData, challenge: []}); setResult(null); }}
-                      className="px-6 py-2 text-[var(--pd-text-3)] border border-[rgba(255,255,255,0.1)] rounded-[8px] font-mono text-xs hover:text-[var(--pd-text)] hover:border-[var(--pd-primary)] transition-colors"
+                  {/* Booking CTA trigger inside results */}
+                  <div className="bg-[rgba(67,97,238,0.06)] border border-[rgba(67,97,238,0.15)] rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4 mt-8">
+                    <div className="text-center sm:text-left">
+                      <p className="text-xs font-semibold text-white mb-1">¿Quieres ver cómo luciría esta implementación en vivo?</p>
+                      <p className="text-[10px] text-[var(--pd-text-3)] font-mono uppercase">Te mostramos ejemplos reales en una llamada estratégica.</p>
+                    </div>
+                    <a 
+                      href="#agenda" 
+                      className="bg-[var(--pd-primary)] hover:bg-[var(--pd-primary-hover)] text-white text-xs font-bold px-4 py-2.5 rounded-lg transition-all duration-300 flex items-center gap-1.5 shrink-0"
                     >
-                      [ REINICIAR_SISTEMA ]
+                      <span>Conversar en vivo</span>
+                      <ChevronRight size={14} />
+                    </a>
+                  </div>
+
+                  {/* Restart button */}
+                  <div className="flex justify-center pt-6 border-t border-[rgba(255,255,255,0.05)]">
+                    <button 
+                      type="button"
+                      onClick={() => { setStep(1); setFormData({ name: '', company: '', sector: '', challenge: '', contact: '' }); setResult(null); }}
+                      className="font-mono text-[9px] text-[var(--pd-text-3)] hover:text-white uppercase tracking-widest border border-[rgba(255,255,255,0.05)] rounded-lg px-3 py-1.5"
+                    >
+                      [ RE-INICIAR TERMINAL ]
                     </button>
                   </div>
                 </motion.div>
               )}
+
             </AnimatePresence>
+
           </div>
         </div>
+
       </div>
     </section>
   );

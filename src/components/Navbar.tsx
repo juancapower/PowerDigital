@@ -31,6 +31,7 @@ export default function Navbar() {
               className="h-8 w-auto"
               referrerPolicy="no-referrer"
             />
+            <span className="hidden sm:inline-block text-[9px] font-mono uppercase tracking-[0.2em] text-[var(--pd-gold)] border border-[rgba(212,175,55,0.25)] bg-[rgba(212,175,55,0.06)] px-2 py-1 rounded">by JuanCa Power</span>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">

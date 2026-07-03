@@ -1,38 +1,59 @@
 @import "tailwindcss";
 
 :root {
-  /* PALETA POWER DIGITAL */
-  --pd-bg:              #0C0D11;    /* Obsidiana — fondo principal, NO negro puro */
-  --pd-surface:         #131520;    /* Cards, navbar, contenedores */
-  --pd-surface-2:       #1A1C2B;    /* Hover, paneles secundarios */
-  --pd-surface-3:       #1D2038;    /* Modals, tooltips */
-  --pd-border:          rgba(67,97,238,0.15);   /* Bordes premium */
-  --pd-border-n:        rgba(255,255,255,0.07); /* Bordes neutros */
-  --pd-primary:         #4361EE;    /* Indigo eléctrico — acento principal */
-  --pd-primary-hover:   #5A75F5;    /* Hover de CTAs */
-  --pd-primary-dark:    #2A3EB1;    /* Pressed, versión oscura */
-  --pd-primary-light:   #7B9EFF;    /* Links, badges, detalles */
-  --pd-glow:            rgba(67,97,238,0.28);   /* Box-shadow glow */
+  /* PALETA POWER DIGITAL (UPGRADED) */
+  --pd-bg:              #0b0d17;    /* Negro base oficial */
+  --pd-surface:         #10121f;    /* Negro secundario oficial */
+  --pd-surface-2:       #171a2e;    /* Hover, paneles secundarios */
+  --pd-surface-3:       #1e213b;    /* Modals, tooltips */
+  
+  --pd-primary:         #4361ee;    /* Azul principal oficial */
+  --pd-primary-hover:   #5a75f5;    /* Hover de CTAs */
+  --pd-primary-dark:    #1e2e86;    /* Azul profundo oficial */
+  --pd-primary-light:   #6e8dff;    /* Azul claro oficial */
+  
+  /* DORADOS */
+  --pd-gold:            #d4af37;    /* Dorado principal oficial */
+  --pd-gold-light:      #e7c97a;    /* Dorado claro */
+  --pd-gold-soft:       #f4d890;    /* Dorado suave */
+  --pd-gold-dark:       #9c6a16;    /* Dorado oscuro */
+  --pd-gold-bronze:     #6f4a12;    /* Marrón dorado */
+
+  /* GRISES */
+  --pd-gray-light:      #d8d9da;    /* Gris claro */
+  --pd-gray-blue:       #a0a4b8;    /* Gris azulado */
+  
+  --pd-border:          rgba(67, 97, 238, 0.15);   /* Bordes premium */
+  --pd-border-gold:     rgba(212, 175, 55, 0.2);   /* Bordes dorados sutiles */
+  --pd-border-n:        rgba(255, 255, 255, 0.07); /* Bordes neutros */
+  
+  --pd-glow:            rgba(67, 97, 238, 0.28);   /* Box-shadow glow */
+  --pd-glow-gold:       rgba(212, 175, 55, 0.25);  /* Box-shadow dorado */
+  
   --pd-text:            #EEF0FF;    /* Blanco diamante — títulos */
-  --pd-text-2:          #8892B0;    /* Párrafos, descripciones */
-  --pd-text-3:          #4A5175;    /* Metadata, labels, hints */
+  --pd-text-2:          #a0a4b8;    /* Párrafos, descripciones (Gris azulado) */
+  --pd-text-3:          #5a6185;    /* Metadata, labels, hints */
 
   /* GRADIENTES */
-  --pd-grad-hero: radial-gradient(ellipse at 20% 50%, rgba(67,97,238,0.22) 0%, transparent 65%);
-  --pd-grad-card: linear-gradient(135deg, #131520 0%, #1A1C2B 100%);
-  --pd-grad-pri:  linear-gradient(135deg, #4361EE 0%, #7B9EFF 100%);
-  --pd-grad-deep: linear-gradient(180deg, #0C0D11 0%, #1A1C2B 100%);
+  --pd-grad-hero: radial-gradient(ellipse at 50% 50%, rgba(67,97,238,0.18) 0%, transparent 70%);
+  --pd-grad-gold: radial-gradient(ellipse at 50% 50%, rgba(212,175,55,0.08) 0%, transparent 70%);
+  --pd-grad-card: linear-gradient(135deg, #10121f 0%, #171a2e 100%);
+  --pd-grad-pri:  linear-gradient(135deg, #4361ee 0%, #6e8dff 100%);
+  --pd-grad-gold-text: linear-gradient(135deg, #e7c97a 0%, #d4af37 60%, #9c6a16 100%);
+  --pd-grad-deep: linear-gradient(180deg, #0b0d17 0%, #10121f 100%);
 
   /* SOMBRAS */
   --pd-shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
   --pd-shadow-md: 0 4px 16px rgba(0,0,0,0.4);
   --pd-shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
   --pd-shadow-glow: 0 0 24px rgba(67,97,238,0.3), 0 4px 16px rgba(0,0,0,0.4);
+  --pd-shadow-gold-glow: 0 0 24px rgba(212,175,55,0.15);
 
-  /* TIPOGRAFÍA */
-  --font-display: "Clash Display", "Space Grotesk", sans-serif;
-  --font-body:    "Satoshi", "Plus Jakarta Sans", sans-serif;
-  --font-mono:    "DM Mono", "JetBrains Mono", monospace;
+  /* TIPOGRAFÍA OFICIAL JUANCA POWER / DIGITAL */
+  --font-display: "Space Grotesk", "Clash Display", sans-serif;
+  --font-body:    "Plus Jakarta Sans", "Satoshi", sans-serif;
+  --font-serif:   "Cormorant Garamond", serif;
+  --font-mono:    "DM Mono", monospace;
 
   /* RADIOS */
   --radius-sm: 6px;
@@ -45,6 +66,7 @@
 @theme {
   --font-display: var(--font-display);
   --font-body: var(--font-body);
+  --font-serif: var(--font-serif);
   --font-mono: var(--font-mono);
 }
 

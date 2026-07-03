@@ -5,8 +5,10 @@
 
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
-import ServicesSection from './components/ServicesSection';
 import BrandsSection from './components/BrandsSection';
+import ProblemSection from './components/ProblemSection';
+import MethodologySection from './components/MethodologySection';
+import ServicesSection from './components/ServicesSection';
 import FounderSection from './components/FounderSection';
 import AmaraFeature from './components/AmaraFeature';
 import InteractiveDiagnostic from './components/InteractiveDiagnostic';
@@ -17,17 +19,20 @@ import AgendaSection from './components/AgendaSection';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[var(--pd-bg)] text-[var(--pd-text)] selection:bg-[var(--pd-primary)] selection:text-white relative flex flex-col">
+    <div className="min-h-screen bg-[var(--pd-bg)] text-[var(--pd-text)] selection:bg-[var(--pd-primary)] selection:text-white relative flex flex-col overflow-x-hidden">
       <NoiseOverlay />
       <Navbar />
       <main className="flex-1">
+        {/* Sequence according to brand architecture specifications */}
         <HeroSection />
         <BrandsSection />
+        <ProblemSection />
+        <MethodologySection />
         <ServicesSection />
-        <AgendaSection />
-        <FounderSection />
         <AmaraFeature />
+        <FounderSection />
         <InteractiveDiagnostic />
+        <AgendaSection />
       </main>
       <Footer />
       {/* Mobile Sticky CTA */}
